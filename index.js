@@ -4,7 +4,7 @@ const axios = require('axios')
 const cheerio = require('cheerio')
 
 // Start an inctance of express
-const PORT = 8000
+const PORT = process.env.PORT || 8000
 const app = express()
 
 // Initialize array that will contain the data from the response
