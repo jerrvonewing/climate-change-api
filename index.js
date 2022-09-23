@@ -99,11 +99,35 @@ app.get('/', (req, res) => {
     res.json('Welcome to my Climate Change News API!')
 })
 
-// Return scraped data
+// Return scraped data of all sources
 app.get('/news', (req, res) => {
     res.json(articles)
 })
 
+// Return scraped data of a specific sources
+app.get('/news/:newspaperId', async (req, res) => {
+    const newspaperId = req.params.newspaperId
+    const newspaperAddress = newspapers.filter(newspaper => newspaper.name === newspaperId)[0].address
+    const newspaperBase = newspapers.filter(newspaper => newspaper.name === newspaperId)[0].base
+
+    axios.get(newspaperAddress)
+        .then(response => {
+            const html = response.data
+            const $ = cheerio.load(html)
+            const specificArticles = []
+
+            $('a:contains("climate")', html).each(function () {
+                const title = $(this).text()
+                const url = $(this).attr('href')
+                specificArticles.push({
+                    title,
+                    url: newspaperBase + url,
+                    source: newspaperId
+                })
+            })
+            res.json(specificArticles)
+        }).catch(err => console.log(err))
+})
 
 // Define port to listen on
 app.listen(PORT, () => console.log('Server is running on port ' + PORT))
