@@ -105,7 +105,7 @@ app.get('/news', (req, res) => {
 })
 
 // Return scraped data of a specific sources
-app.get('/news/:newspaperId', async (req, res) => {
+app.get('/news/:newspaperId', (req, res) => {
     const newspaperId = req.params.newspaperId
     const newspaperAddress = newspapers.filter(newspaper => newspaper.name === newspaperId)[0].address
     const newspaperBase = newspapers.filter(newspaper => newspaper.name === newspaperId)[0].base
