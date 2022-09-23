@@ -1,0 +1,24 @@
+{
+  "name": "climate-change-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jerrvonewing/climate-change-api.git"
+  },
+  "author": "jerrvon ewing",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jerrvonewing/climate-change-api/issues"
+  },
+  "homepage": "https://github.com/jerrvonewing/climate-change-api#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cheerio": "^1.0.0-rc.12",
+    "express": "^4.18.1"
+  }
+}
